@@ -24,9 +24,9 @@ char *get_file_hash(char * filename, char * hash);
 // MODIFICARLO 
 int copy(char * source, char * destination) {
     //Declaración de la referencia del archivo source
-    FILE f;
+    FILE*f;
     //Declaracion de la referencia del archivo destino
-    FILE df;
+    FILE*df;
     //Declaración del buffer donde se va a leer
     char buffer[BUFSIZ];
     //Abrir source en modo lectura
@@ -35,7 +35,7 @@ int copy(char * source, char * destination) {
     if(!f)
     {
     	//no abrio el archivo
-        exit 1;
+        return 1;
     }
     //Crear y abrir el archivo destino, en modo escritura
     df = fopen(destination,"w");
@@ -85,7 +85,7 @@ return_code add(char * filename, char * comment) {
 	
 	//hash del archivo
 	char*hash = (char*) malloc(HASH_SIZE);
-	get_file_hash(filename, &hash);
+	get_file_hash(filename, hash);
 	
 	// TODO VERIFICAR HASH
 	
