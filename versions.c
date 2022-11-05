@@ -100,9 +100,10 @@ return_code add(char * filename, char * comment) {
 	}
 	
 	file_version file;
-	file.filename = filename;
-	file.hash = hash;
-	file.comment = comment;
+	strcpy(file.filename, filename);
+	strcpy(file.hash, hash);
+	strcpy(file.comment, comment);
+
 	
 	return VERSION_ERROR;
 }

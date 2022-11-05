@@ -21,8 +21,7 @@ void print_help();
 int main(int argc, char *argv[]) {
 	struct stat s;
 
-	//mkdir(VERSIONS_DIR, 0755);
-	mkdir(VERSIONS_DIR);
+	mkdir(VERSIONS_DIR, 0755);
 	
 	add("p1.txt", "ESTA ES LA PRUEBA UNO");
 

@@ -23,7 +23,6 @@
 
 
 #define EQUALS(s1, s2) (strcmp(s1, s2) == 0) /**< Verdadero si dos cadenas son iguales.*/
-#define NAME_MAX 100
 
 /**
  * @brief Version de un archivo.
