@@ -19,6 +19,7 @@ char *get_file_hash(char * filename, char * hash);
  *
  * @return 1 en caso de exito, 0 si existe error.
  */
+int copy(char * source, char * destination);
 
 
 // MODIFICARLO 
@@ -75,12 +76,12 @@ return_code add(char * filename, char * comment) {
 	// si stat devuelve -1 hay un error
 	if( stat(filename, &s) == -1){
 		perror("stat");
-		exit 1;
+		return 1;
 	}
 	
 	//SI NO ES UN ARCHIVO REGULAR
 	if( !S_ISREG(s.st_mode) ){
-		exit 1;
+		return 1;
 	}
 	
 	//hash del archivo
@@ -128,11 +129,6 @@ char *get_file_hash(char * filename, char * hash) {
 	sha256_hash_file_hex(filename, hash);
 
 	return hash;
-
-}
-
-int copy(char * source, char * destination) {
-	//TODO implementar
 
 }
 
