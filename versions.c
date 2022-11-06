@@ -34,7 +34,7 @@ int copy(char * source, char * destination) {
 
 	//VERIFICAR SI SE PUEDEN ABRIR LOS ARCHIVOS
 	sourceFile = fopen(source, "r");
-      	destFile= fopen(destination, "w");	
+      	destFile = fopen(destination, "w");
     
 	//SI OCURRIO UN ERROR CON EL ARCHIVO SOURCE
 	if(sourceFile == NULL){
@@ -44,9 +44,24 @@ int copy(char * source, char * destination) {
 
 	//LEER ARCHIVO SOURCE Y ESCRIBIR INFO EN EL ARCHIVO DESTINO
 	char str[BUFSIZ];
-	while( fgets(str, 255,sourceFile) ){
+	while( fread() ){
 		fwrite(str, sizeof(char), BUFSIZ, destFile);		
 	}
+
+    //Declaración del buffer donde se va a leer
+    char buffer[BUFSIZ];
+	//Declaracion de la bandera de lineas leidas
+	size_t nreads;
+    while(!feof(sourceFile))
+    {
+        nreads = fread(buffer,sizeof(char), BUFSIZ, sourceFile);
+        if(nreads == 0)
+        {
+            break;
+        }
+        fwrite(buffer, sizeof(char), nreads, destFile);
+
+    }
 
     	fclose(sourceFile);	
 	fclose(destFile);
