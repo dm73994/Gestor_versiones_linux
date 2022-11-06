@@ -23,8 +23,8 @@ int copy(char * source, char * destination);
 
 //DOCUMENTAR
 int addVersion(file_version newVersion);
-
-
+void shortHash(char*hash);
+void printVersionStruct(file_version version);
 
 
 int copy(char * source, char * destination) {
@@ -99,24 +99,57 @@ return_code add(char * filename, char * comment) {
 
 //**
 // RECIBE una estructura archivo y la guarda en la bd
+// retorna 1 si se pudo sobreescribir en la bd 0 en caso de error
 //**
 int addVersion(file_version newVersion){
 	FILE*db = fopen(VERSIONS_DB_PATH, "ab");
+
+	// sino se pudo abrir la bd
+	if(db == NULL) return 0;
+	
+	//escribir en la bd
 	fwrite(&newVersion, sizeof(file_version), 1, db);
 
-	if(fwrite != 0){
-		fclose(db);
-		return 1;  // INGRESAR NUEVO ARCHIVO EXITOSO
-	}else{
-		fclose(db);
-		return 0; //ERROR
-	}
+	return fwrite != 0 ? 1 : 0;
 }
 
 
 void list(char * filename) {
-	//TODO implementar
+	//abrir la base de datos
+	FILE*db = fopen(VERSIONS_DB_PATH, "r");
+
+	//verificar si se abrio la base de datos
+	if(db == NULL) 	return;
+
+	// se almacena temporarmente la estructura leida en version
+	file_version version;
+	//leer la bd
+	while( fread(&version, sizeof(file_version), 1, db) ){
+		// SI EL PARAMETRO DE NOMBRE DE ARCHIVO COINCIDE EN UNA ESTRUCTURA DE LA BASE DE DATOS:
+		if(EQUALS(version.filename, filename)) printVersionStruct(version);
+	}
+	fclose(db);
 }
+
+void printVersionStruct(file_version version){	
+	printf("VERSIONES DE %s\n", version.filename);
+	printf("FILENAME: [ %s ] \n", version.filename);
+	printf("HASH: [ %s ]\n", version.hash);
+	printf("COMMENTS: [ %s ] \n", version.comment);
+	printf("\n");
+}
+
+
+void shortHash(char*hash){
+	/*int hashLen = strlen(hash);
+	char printableHash;
+	strcpy(printableHash, hash[0]);
+	strcat(printableHash, "...");
+	printf("HASH: [ %s ]\n", printableHash);
+	*/
+}
+
+
 
 char *get_file_hash(char * filename, char * hash) {
 	char *comando;
@@ -138,7 +171,22 @@ char *get_file_hash(char * filename, char * hash) {
 
 
 return_code get(char * filename, int version) {
-
-	//TODO implementar
+	FILE*db = fopen(VERSIONS_DB_PATH, "r");
+	
+	//verificar archivo
+	if(db == NULL)	return VERSIONS_ERROR;
+	
+	file_version version;
+	fread(&version, sizeof(version), 1, db);
+	int count = 1;
+	while( fread(&version, sizeof(version), 1, db) ){
+		if( EQUALS(version.filename, filename)  && count == version){
+			copy(version.hash, version.filename);	
+		}
+		else count++;
+	}
+	
+	fclose(db);
+	
 	return VERSION_DOES_NOT_EXIST;
 }
