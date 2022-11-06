@@ -42,11 +42,6 @@ int copy(char * source, char * destination) {
 		return 0;
 	}	
 
-	//LEER ARCHIVO SOURCE Y ESCRIBIR INFO EN EL ARCHIVO DESTINO
-	char str[BUFSIZ];
-	while( fread() ){
-		fwrite(str, sizeof(char), BUFSIZ, destFile);		
-	}
 
     //Declaración del buffer donde se va a leer
     char buffer[BUFSIZ];
@@ -196,6 +191,9 @@ return_code get(char * filename, int version) {
 	int count = 1;
 	while( fread(&versionStruc, sizeof(file_version), 1, db) ){
 		if( EQUALS(versionStruc.filename, filename)  && count == version){
+			printf("COUNT: %d\n", count);
+			printf("VERSION: %d\n", version);
+			printf("%s\n", versionStruc.hash);
 			copy(versionStruc.hash, versionStruc.filename);	
 		}
 		else{
