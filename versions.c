@@ -21,50 +21,37 @@ char *get_file_hash(char * filename, char * hash);
  */
 int copy(char * source, char * destination);
 
+//DOCUMENTAR
+int addVersion(file_version newVersion);
 
-// MODIFICARLO 
+
+
+
 int copy(char * source, char * destination) {
-    //Declaración de la referencia del archivo source
-    FILE*f;
-    //Declaracion de la referencia del archivo destino
-    FILE*df;
-    //Declaración del buffer donde se va a leer
-    char buffer[BUFSIZ];
-    //Abrir source en modo lectura
-    f = fopen(source,"r");
-    //Comprobar si se abrió source
-    if(!f)
-    {
-    	//no abrio el archivo
-        return 1;
-    }
-    //Crear y abrir el archivo destino, en modo escritura
-    df = fopen(destination,"w");
-    //Comprobar si se abrió el archivo
-    if(!df)
-    {
-        // Se cierra el archivo abierto
-        fclose(f);
-        //Retornar bandera error
-        return 0;
-    }
+	//REFERENCIA A ARCHIVOS 
+    	FILE*sourceFile;
+       	FILE*destFile;
 
-    //Declaracion de la bandera de lineas leidas
-    size_t nreads;
-    while(!feof(f))
-    {
-        nreads = fread(buffer,sizeof(char), BUFSIZ,f);
-        if(nreads == 0)
-        {
-            break;
-        }
-        fwrite(buffer, sizeof(char), nreads, df);
+	//VERIFICAR SI SE PUEDEN ABRIR LOS ARCHIVOS
+	sourceFile = fopen(source, "r");
+      	destFile= fopen(destination, "w");	
+    
+	//SI OCURRIO UN ERROR CON EL ARCHIVO SOURCE
+	if(sourceFile == NULL){
+		//perror(sourceFile);
+		return 0;
+	}	
 
-    }
-    fclose(f);
-    fclose(df);
-    return 1;
+	//LEER ARCHIVO SOURCE Y ESCRIBIR INFO EN EL ARCHIVO DESTINO
+	char str[BUFSIZ];
+	while( fgets(str, 255,sourceFile) ){
+		fwrite(str, sizeof(char), BUFSIZ, destFile);		
+	}
 
+    	fclose(sourceFile);	
+	fclose(destFile);
+
+	return 1;
 }
 
 
@@ -74,16 +61,14 @@ return_code add(char * filename, char * comment) {
 	struct stat s;	
 	
 	// si stat devuelve -1 hay un error
-	if( stat(filename, &s) == -1){
-		printf("ERROR");
+	if( stat(filename, &s) == -1){		
 		perror("stat");
-		return 1;
+		return 0;
 	}
 	
 	//SI NO ES UN ARCHIVO REGULAR
-	if( !S_ISREG(s.st_mode) ){
-		printf("entro");
-		return 1;
+	if( !S_ISREG(s.st_mode) ){		
+		return 0;
 	}
 	
 	//hash del archivo
@@ -104,12 +89,28 @@ return_code add(char * filename, char * comment) {
 		strcpy(file.hash, hash);
 		strcpy(file.comment, comment);
 		
-			
-		return VERSION_ADDED;
+		if( addVersion(file) == 1){
+			return VERSION_ADDED;
+		}
 	}
-
 	
 	return VERSION_ERROR;
+}
+
+//**
+// RECIBE una estructura archivo y la guarda en la bd
+//**
+int addVersion(file_version newVersion){
+	FILE*db = fopen(VERSIONS_DB_PATH, "ab");
+	fwrite(&newVersion, sizeof(file_version), 1, db);
+
+	if(fwrite != 0){
+		fclose(db);
+		return 1;  // INGRESAR NUEVO ARCHIVO EXITOSO
+	}else{
+		fclose(db);
+		return 0; //ERROR
+	}
 }
 
 
