@@ -21,11 +21,9 @@ void print_help();
 int main(int argc, char *argv[]) {
 	struct stat s;
 
-	mkdir(VERSIONS_DIR, 0755);
-	
-	add("p1.txt", "ESTA ES LA PRUEBA UNO");
+	mkdir(VERSIONS_DIR, 0755);		
 
-/*	if (stat(VERSIONS_DB_PATH, &s) != 0) {
+	if (stat(VERSIONS_DB_PATH, &s) != 0) {
 		creat(VERSIONS_DB_PATH, 0755);
 	}
 
@@ -56,7 +54,7 @@ int main(int argc, char *argv[]) {
 	}else {
 		print_help();
 	}
-*/
+
 	exit(EXIT_SUCCESS);
 
 }

@@ -75,12 +75,14 @@ return_code add(char * filename, char * comment) {
 	
 	// si stat devuelve -1 hay un error
 	if( stat(filename, &s) == -1){
+		printf("ERROR");
 		perror("stat");
 		return 1;
 	}
 	
 	//SI NO ES UN ARCHIVO REGULAR
 	if( !S_ISREG(s.st_mode) ){
+		printf("entro");
 		return 1;
 	}
 	
@@ -96,14 +98,15 @@ return_code add(char * filename, char * comment) {
 	strcat(nuevoNombre, "/");
 	strcat(nuevoNombre, hash);
 	
-	if( copy(filename, nuevoNombre) == 1 ){
-		return VERSION_ERROR;
+	if( copy(filename, nuevoNombre) == 1 ){		
+		file_version file;
+		strcpy(file.filename, filename);
+		strcpy(file.hash, hash);
+		strcpy(file.comment, comment);
+		
+			
+		return VERSION_ADDED;
 	}
-	
-	file_version file;
-	strcpy(file.filename, filename);
-	strcpy(file.hash, hash);
-	strcpy(file.comment, comment);
 
 	
 	return VERSION_ERROR;
