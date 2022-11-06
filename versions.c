@@ -122,11 +122,11 @@ void list(char * filename) {
 	if(db == NULL) 	return;
 
 	// se almacena temporarmente la estructura leida en version
-	file_version version;
+	file_version versionStruc;
 	//leer la bd
-	while( fread(&version, sizeof(file_version), 1, db) ){
+	while( fread(&versionStruc, sizeof(file_version), 1, db) ){
 		// SI EL PARAMETRO DE NOMBRE DE ARCHIVO COINCIDE EN UNA ESTRUCTURA DE LA BASE DE DATOS:
-		if(EQUALS(version.filename, filename)) printVersionStruct(version);
+		if(EQUALS(versionStruc.filename, filename)) printVersionStruct(versionStruc);
 	}
 	fclose(db);
 }
@@ -174,19 +174,21 @@ return_code get(char * filename, int version) {
 	FILE*db = fopen(VERSIONS_DB_PATH, "r");
 	
 	//verificar archivo
-	if(db == NULL)	return VERSIONS_ERROR;
+	if(db == NULL)	return VERSION_ERROR;
 	
-	file_version version;
-	fread(&version, sizeof(version), 1, db);
+	file_version versionStruc;
+	fread(&versionStruc, sizeof(file_version), 1, db);
 	int count = 1;
-	while( fread(&version, sizeof(version), 1, db) ){
-		if( EQUALS(version.filename, filename)  && count == version){
-			copy(version.hash, version.filename);	
+	while( fread(&versionStruc, sizeof(file_version), 1, db) ){
+		if( EQUALS(versionStruc.filename, filename)  && count == version){
+			copy(versionStruc.hash, versionStruc.filename);	
 		}
-		else count++;
+		else{
+			count++;
+		}
 	}
 	
 	fclose(db);
 	
-	return VERSION_DOES_NOT_EXIST;
+	return VERSION_RECOVERY;
 }
