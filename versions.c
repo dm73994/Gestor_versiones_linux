@@ -174,7 +174,7 @@ void list(char * filename) {
 	while( fread(&versionStruc, sizeof(file_version), 1, db) ){
 		// SI EL PARAMETRO DE NOMBRE DE ARCHIVO COINCIDE EN UNA ESTRUCTURA DE LA BASE DE DATOS:
 		if(EQUALS(versionStruc.filename, filename)) {
-			printf("VERSION %d\n", counter);
+			printf("V.%d \t", counter);
 			printVersionStruct(versionStruc);
 			counter++;
 		}
@@ -183,10 +183,10 @@ void list(char * filename) {
 }
 
 void printVersionStruct(file_version version){	
-	printf("FILENAME: [ %s ] \n", version.filename);	
-	printf("[HASH] %.6s ... %s", version.hash, version.hash + strlen(version.hash)-4);
-	printf("COMMENTS: [ %s ] \n", version.comment);
-	printf("****************************************\n");
+	printf("[FILENAME]  %s\t", version.filename);	
+	printf("[HASH] %.6s ... %s \t", version.hash, version.hash + strlen(version.hash)-4);
+	printf("[COMMENTS]  %s ", version.comment);
+	printf("\n");
 }
 
 
