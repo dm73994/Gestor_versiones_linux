@@ -183,20 +183,15 @@ void list(char * filename) {
 }
 
 void printVersionStruct(file_version version){	
-	printf("FILENAME: [ %s ] \n", version.filename);
-	printf("HASH: [ %s ]\n", version.hash);
+	printf("FILENAME: [ %s ] \n", version.filename);	
+	printf("[HASH] %.6s ... %s", version.hash, version.hash + strlen(version.hash)-4);
 	printf("COMMENTS: [ %s ] \n", version.comment);
 	printf("****************************************\n");
 }
 
 
 void shortHash(char*hash){
-	/*int hashLen = strlen(hash);
-	char printableHash;
-	strcpy(printableHash, hash[0]);
-	strcat(printableHash, "...");
-	printf("HASH: [ %s ]\n", printableHash);
-	*/
+//	printf("[HASH] %.6s ... %s", hash, hash + strlen(hash)-4);
 }
 
 
