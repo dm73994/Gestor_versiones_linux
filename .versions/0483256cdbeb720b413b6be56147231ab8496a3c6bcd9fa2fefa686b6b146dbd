@@ -2,7 +2,7 @@
 #include <sys/stat.h>
 #include "versions.h"
 
-
+// COMENTARIO DE PRUEBA
 /**
  * @brief Obtiene el hash de un archivo.
  * @param filename Nombre del archivo a obtener el hash
@@ -25,6 +25,7 @@ int copy(char * source, char * destination);
 int addVersion(file_version newVersion);
 void shortHash(char*hash);
 void printVersionStruct(file_version version);
+return_code checkVersion(char*verifyHash, char*filename);
 
 
 int copy(char * source, char * destination) {
@@ -83,28 +84,55 @@ return_code add(char * filename, char * comment) {
 	
 	//hash del archivo
 	char*hash = (char*) malloc(HASH_SIZE);
-	get_file_hash(filename, hash);
+	get_file_hash(filename, hash);		
 	
-	// TODO VERIFICAR HASH
 	
 	//generar nuevo nombre del archivo
-	char*nuevoNombre = (char*) malloc(strlen( VERSIONS_DIR ) + HASH_SIZE + 1);
+	char*nuevoNombre = (char*) malloc(strlen( VERSIONS_DIR ) +  + HASH_SIZE + 1);
 	strcpy(nuevoNombre, VERSIONS_DIR);
 	strcat(nuevoNombre, "/");
 	strcat(nuevoNombre, hash);
 	
-	if( copy(filename, nuevoNombre) == 1 ){		
-		file_version file;
-		strcpy(file.filename, filename);
-		strcpy(file.hash, hash);
-		strcpy(file.comment, comment);
-		
-		if( addVersion(file) == 1){
-			return VERSION_ADDED;
+	return_code verify = checkVersion(hash, filename);
+
+	file_version file;
+	strcpy(file.filename, filename);
+	strcpy(file.hash, hash);
+	strcpy(file.comment, comment);
+
+	if( verify == HASH_DOESNT_EXIST ){
+		if( copy(filename, nuevoNombre) == 1 ){		
+			if( addVersion(file) == 1) return VERSION_ADDED;
 		}
+	}
+	else if(verify == HASH_EXIST){
+		if( addVersion(file) == 1) return VERSION_ADDED;
 	}
 	
 	return VERSION_ERROR;
+}
+
+//return 1 si la version ya exixst, 3 si ocurrio un error en la carpeta, 0 successfull
+//
+return_code checkVersion(char*hash, char*filename){
+	FILE*db = fopen(VERSIONS_DB_PATH, "r");
+
+	if(db == NULL) return 3;
+	
+	file_version vStruct;
+	int hashFlag = 0;
+	while( fread(&vStruct, sizeof(file_version), 1, db) ){
+		if( EQUALS(vStruct.hash, hash) ){
+			if( EQUALS(vStruct.filename, filename) ){	
+				return HASH_NAME_ALREADY_EXIST;
+			}
+			hashFlag = 1;
+		}
+	}
+
+	if(hashFlag == 1) return HASH_EXIST;
+
+	return HASH_DOESNT_EXIST;
 }
 
 //**
@@ -120,7 +148,7 @@ int addVersion(file_version newVersion){
 	//escribir en la bd
 	fwrite(&newVersion, sizeof(file_version), 1, db);
 
-	return fwrite != 0 ? 1 : 0;
+	return fwrite != 0 ? 1 : 0; // 
 }
 
 
@@ -133,20 +161,32 @@ void list(char * filename) {
 
 	// se almacena temporarmente la estructura leida en version
 	file_version versionStruc;
+	
+	//SI EL PARAMETRO ARCHIVO ES NULL LISTAR TODOS LOS BACKUP
+	if(filename == NULL){
+		while( fread(&versionStruc, sizeof(file_version), 1, db) ) printVersionStruct(versionStruc);
+		fclose(db);
+		return;
+	}
+
 	//leer la bd
+	int counter = 1;
 	while( fread(&versionStruc, sizeof(file_version), 1, db) ){
 		// SI EL PARAMETRO DE NOMBRE DE ARCHIVO COINCIDE EN UNA ESTRUCTURA DE LA BASE DE DATOS:
-		if(EQUALS(versionStruc.filename, filename)) printVersionStruct(versionStruc);
+		if(EQUALS(versionStruc.filename, filename)) {
+			printf("VERSION %d\n", counter);
+			printVersionStruct(versionStruc);
+			counter++;
+		}
 	}
 	fclose(db);
 }
 
 void printVersionStruct(file_version version){	
-	printf("VERSIONES DE %s\n", version.filename);
 	printf("FILENAME: [ %s ] \n", version.filename);
 	printf("HASH: [ %s ]\n", version.hash);
 	printf("COMMENTS: [ %s ] \n", version.comment);
-	printf("\n");
+	printf("****************************************\n");
 }
 
 
@@ -204,7 +244,6 @@ return_code get(char * filename, int version) {
 				copy(path, destFile);
 				break;
 			}else count++;			
-
 		}
 	}
 	
