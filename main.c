@@ -1,9 +1,11 @@
 /*
  * @file
- * @author Erwin Meza Vega <emezav@gmail.com>
+ * @author Carlos David Mesa Martinez <cadmesa@unicauca.edu.co>
+ * @author Anderson Camilo Bonilla <>
  * Sistema de Control de Versiones
  * Uso: 
  *      versions add ARCHIVO "Comentario" : Adiciona una version del archivo al repositorio
+ *      versions list 		              : Lista todas las versiones de todos los archivos existentes
  *      versions list ARCHIVO             : Lista las versiones del archivo existentes
  *      versions get numver ARCHIVO       : Obtiene una version del archivo del repositorio
  */
@@ -27,29 +29,44 @@ int main(int argc, char *argv[]) {
 		creat(VERSIONS_DB_PATH, 0755);
 	}
 
-	if (argc == 4
-			&& EQUALS(argv[1], "add")) {
-		if (add(argv[2], argv[3]) == VERSION_ERROR) {
-			fprintf(stderr, "No se puede adicionar %s\n", argv[2]);
+	if (argc == 4 && EQUALS(argv[1], "add")) {
+		return_code proccess = add(argv[2], argv[3]);
+		if ( proccess == HASH_NAME_ALREADY_EXIST) {
+			fprintf(stderr, "[ERROR] No se puede adicionar %s, el nombre de archivo y hash ya existen.\n", argv[2]);
+		}else if( proccess == VERSION_ADDED ){
+			printf("[SUCCESS] Se ha agregado %s!", argv[2]);
+			exit(EXIT_SUCCESS);
 		}
-	}else if (argc == 2
-			&& EQUALS(argv[1], "list")) {
+	}else if (argc == 2 && EQUALS(argv[1], "list")) {
 		//Listar todos los archivos almacenados en el repositorio
 		list(NULL);
 	}else if (argc == 3
 			&& EQUALS(argv[1], "list")) {
 		//Listar el archivo solicitado
 		list(argv[2]);
-	}else if (argc == 4
-			&& EQUALS(argv[1], "get")) {
+	}
+	else if (argc == 4 && EQUALS(argv[1], "get")) {
 		int version = atoi(argv[2]);
 		if (version <= 0) {
 			fprintf(stderr, "Numero de version invalido\n");
 			exit(EXIT_FAILURE);
 		}
-		if (!get(argv[3], version)) {
-			fprintf(stderr, "No se puede obtener la version %d de %s\n", version, argv[3]);
+		return_code get = get(argv[3], version);
+		if ( get == OPEN_FILE_ERROR ) {
+			fprintf(stderr, "[ERROR] Error al ingresar al abrir la base de datos, asegurese de que esta exista.", version, argv[3]);
 			exit(EXIT_FAILURE);
+		}
+		else if( get == FILENAME_DOESNT_EXIST){
+			fprintf(stderr, "[ERROR] El nombre de archivo (%s) que desea recuperar no existe.", argv[4]);
+			exit(EXIT_FAILURE);
+		}
+		else if( get == FILE_VERSION_DOESNT_EXIST){
+			fprintf(stderr, "[ERROR] No se puede obtener la version %d de %s, asegurese de ingresar una version correcta.\n", version, argv[3]);
+			exit(EXIT_FAILURE);
+		}
+		else if( get == VERSION_RECOVERY){
+			printf("[SUCCESS] Se ha recuperado la version (%d) del archivo %s con exito!", argv[3], argv[4] );
+			exit(EXIT_SUCCESS);
 		}
 	}else {
 		print_help();
@@ -62,6 +79,7 @@ int main(int argc, char *argv[]) {
 void print_help() {
 	printf("Uso: \n");
 	printf("versions add ARCHIVO \"Comentario\" : Adiciona una version del archivo al repositorio\n");
-	printf("versions list ARCHIVO             : Lista las versiones del archivo existentes\n");
-	printf("versions get numver ARCHIVO       : Obtiene una version del archivo del repositorio\n");
+	printf("versions list                       : Lista todas las versiones de todos los archivos existentes\n");
+	printf("versions list ARCHIVO               : Lista las versiones del archivo existentes\n");
+	printf("versions get numver ARCHIVO         : Obtiene una version del archivo del repositorio\n");
 }

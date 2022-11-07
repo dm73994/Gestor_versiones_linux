@@ -21,45 +21,55 @@ char *get_file_hash(char * filename, char * hash);
  */
 int copy(char * source, char * destination);
 
-//DOCUMENTAR
+/**
+ * @brief registra una estructura archivo en la base de datos
+ * 
+ * @param newVersion estructura que será almacenada
+ * @return int 1 si se pudo sobreescribir, en cualquier otro caso será un error
+ */
 int addVersion(file_version newVersion);
-void shortHash(char*hash);
+
+/**
+ * @brief imprime en consola la estructura de un archivo
+ * 
+ * @param version estructura del archivo que queremos mostrar en consola
+ */
 void printVersionStruct(file_version version);
+
+/**
+ * @brief Verifica si un hash y un nombre ya existen o no en la base de datos y en la carpeta de versiones
+ * 
+ * @param verifyHash hash a buscar
+ * @param filename nombre de archivo a buscar
+ * @return return_code  HASH_NAME_ALREADY_EXIST || HASH_EXIST || HASH_DOESNT_EXIST
+ */
 return_code checkVersion(char*verifyHash, char*filename);
 
 
 int copy(char * source, char * destination) {
 	//REFERENCIA A ARCHIVOS 
-    	FILE*sourceFile;
-       	FILE*destFile;
+    FILE*sourceFile;
+    FILE*destFile;
 
 	//VERIFICAR SI SE PUEDEN ABRIR LOS ARCHIVOS
 	sourceFile = fopen(source, "r");
-      	destFile = fopen(destination, "w");
+    destFile = fopen(destination, "w");
     
 	//SI OCURRIO UN ERROR CON EL ARCHIVO SOURCE
 	if(sourceFile == NULL){
-		//perror(sourceFile);
-		return 0;
+		return OPEN_FILE_ERROR;
 	}	
 
 
-    //Declaración del buffer donde se va a leer
+    //Declaración del buffer donde se va a almacenar temporalmente una parte de lo leido
     char buffer[BUFSIZ];
-	//Declaracion de la bandera de lineas leidas
-	size_t nreads;
-    while(!feof(sourceFile))
+    while(fread(buffer,sizeof(char), BUFSIZ, sourceFile))
     {
-        nreads = fread(buffer,sizeof(char), BUFSIZ, sourceFile);
-        if(nreads == 0)
-        {
-            break;
-        }
         fwrite(buffer, sizeof(char), nreads, destFile);
-
     }
 
-    	fclose(sourceFile);	
+	// cerrar los archivos
+    fclose(sourceFile);	
 	fclose(destFile);
 
 	return 1;
@@ -93,12 +103,14 @@ return_code add(char * filename, char * comment) {
 	strcat(nuevoNombre, "/");
 	strcat(nuevoNombre, hash);
 	
-	return_code verify = checkVersion(hash, filename);
-
+	//SE CREA LA POSIBLE ESTRUCTURA HA ALMACENAR
 	file_version file;
 	strcpy(file.filename, filename);
 	strcpy(file.hash, hash);
 	strcpy(file.comment, comment);
+
+
+	return_code verify = checkVersion(hash, filename);
 
 	if( verify == HASH_DOESNT_EXIST ){
 		if( copy(filename, nuevoNombre) == 1 ){		
@@ -109,7 +121,7 @@ return_code add(char * filename, char * comment) {
 		if( addVersion(file) == 1) return VERSION_ADDED;
 	}
 	
-	return VERSION_ERROR;
+	return HASH_NAME_ALREADY_EXIST;
 }
 
 //return 1 si la version ya exixst, 3 si ocurrio un error en la carpeta, 0 successfull
@@ -117,38 +129,35 @@ return_code add(char * filename, char * comment) {
 return_code checkVersion(char*hash, char*filename){
 	FILE*db = fopen(VERSIONS_DB_PATH, "r");
 
-	if(db == NULL) return 3;
+	if(db == NULL) return OPEN_FILE_ERROR;
 	
 	file_version vStruct;
 	int hashFlag = 0;
-	while( fread(&vStruct, sizeof(file_version), 1, db) ){
-		if( EQUALS(vStruct.hash, hash) ){
-			if( EQUALS(vStruct.filename, filename) ){	
+	while( fread(&vStruct, sizeof(file_version), 1, db) ){ // LEEMOS LA BASE DE DATOS
+		if( EQUALS(vStruct.hash, hash) ){ // SE ENCUENTRA EL HASH
+			if( EQUALS(vStruct.filename, filename) ){	// HASH Y NOMBRE EXISTENTES
 				return HASH_NAME_ALREADY_EXIST;
 			}
-			hashFlag = 1;
+			hashFlag = 1; // HASH EXISTENTE PERO NOMBRE NO
 		}
 	}
 
-	if(hashFlag == 1) return HASH_EXIST;
+	if(hashFlag == 1) return HASH_EXIST; //EL HASH EXISTE IGNORAMOS SI EL NOMBRE EXISTE, LA ESTRUCTURA DEBE SER ALMACENADA EN LA BS
 
-	return HASH_DOESNT_EXIST;
+	return HASH_DOESNT_EXIST; // LA ESTRUCTURA DEBE SE ALMACENADA EN DB Y GENERAR ARCHIVO EN /.VERSIONS
 }
 
-//**
-// RECIBE una estructura archivo y la guarda en la bd
-// retorna 1 si se pudo sobreescribir en la bd 0 en caso de error
-//**
 int addVersion(file_version newVersion){
+	// abrir para excritura en formato append
 	FILE*db = fopen(VERSIONS_DB_PATH, "ab");
 
 	// sino se pudo abrir la bd
-	if(db == NULL) return 0;
+	if(db == NULL) return OPEN_FILE_ERROR;
 	
 	//escribir en la bd
 	fwrite(&newVersion, sizeof(file_version), 1, db);
 
-	return fwrite != 0 ? 1 : 0; // 
+	return fwrite != 0 ? 1 : 0;
 }
 
 
@@ -189,13 +198,6 @@ void printVersionStruct(file_version version){
 	printf("\n");
 }
 
-
-void shortHash(char*hash){
-//	printf("[HASH] %.6s ... %s", hash, hash + strlen(hash)-4);
-}
-
-
-
 char *get_file_hash(char * filename, char * hash) {
 	char *comando;
 	FILE * fp;
@@ -219,30 +221,38 @@ return_code get(char * filename, int version) {
 	FILE*db = fopen(VERSIONS_DB_PATH, "r");
 	
 	//verificar archivo
-	if(db == NULL)	return VERSION_ERROR;
+	if(db == NULL)	return OPEN_FILE_ERROR;
 	
 	file_version versionStruct;
 	//fread(&versionStruct, sizeof(file_version), 1, db);
 	int count = 1;
+	int nameFlag = 0;
 	while( fread(&versionStruct, sizeof(file_version), 1, db) ){
 		if( EQUALS(versionStruct.filename, filename)){			
+			nameFlag = 1;	
 			if(count == version){
+				// ruta del archivo a recuperar
 				char*path = (char*)malloc(strlen(VERSIONS_DIR) + HASH_SIZE + 2);
 				strcpy(path, VERSIONS_DIR);
 				strcat(path, "/");
 				strcat(path, versionStruct.hash);
 								
+				//ruta de la carpeta raiz de destino
 				char*destFile = (char*)malloc(strlen(versionStruct.filename) + 2);
 				strcpy(destFile, "./");
 				strcat(destFile, versionStruct.filename);
 
 				copy(path, destFile);
-				break;
-			}else count++;			
+
+				fclose(db);
+				return VERSION_RECOVERY;
+			}else count++;		
 		}
 	}
 	
 	fclose(db);
+
+	if(nameFlag == 0) return FILENAME_DOESNT_EXIST;
 	
-	return VERSION_RECOVERY;
+	return FILE_VERSION_DOESNT_EXIST;
 }
