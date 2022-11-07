@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
 		if ( proccess == HASH_NAME_ALREADY_EXIST) {
 			fprintf(stderr, "[ERROR] No se puede adicionar %s, el nombre de archivo y hash ya existen.\n", argv[2]);
 		}else if( proccess == VERSION_ADDED ){
-			printf("[SUCCESS] Se ha agregado %s!", argv[2]);
+			printf("[SUCCESS] Se ha agregado %s con exito!\n", argv[2]);
 			exit(EXIT_SUCCESS);
 		}
 	}else if (argc == 2 && EQUALS(argv[1], "list")) {
@@ -48,16 +48,16 @@ int main(int argc, char *argv[]) {
 	else if (argc == 4 && EQUALS(argv[1], "get")) {
 		int version = atoi(argv[2]);
 		if (version <= 0) {
-			fprintf(stderr, "Numero de version invalido\n");
+			fprintf(stderr, "[ERROR] Numero de version invalido\n");
 			exit(EXIT_FAILURE);
 		}
 		return_code getCode = get(argv[3], version);
 		if ( getCode == OPEN_FILE_ERROR ) {
-			fprintf(stderr, "[ERROR] Error al ingresar al abrir la base de datos, asegurese de que esta exista.");
+			fprintf(stderr, "[ERROR] Error al ingresar al abrir la base de datos, asegurese de que esta exista.\n");
 			exit(EXIT_FAILURE);
 		}
 		else if( getCode == FILENAME_DOESNT_EXIST){
-			fprintf(stderr, "[ERROR] El nombre de archivo (%s) que desea recuperar no existe.", argv[4]);
+			fprintf(stderr, "[ERROR] El nombre de archivo (%s) que desea recuperar no existe.\n", argv[4]);
 			exit(EXIT_FAILURE);
 		}
 		else if( getCode == FILE_VERSION_DOESNT_EXIST){
@@ -65,7 +65,7 @@ int main(int argc, char *argv[]) {
 			exit(EXIT_FAILURE);
 		}
 		else if( getCode == VERSION_RECOVERY){
-			printf("[SUCCESS] Se ha recuperado la version (%d) del archivo %s con exito!",version, argv[3] );
+			printf("[SUCCESS] Se ha recuperado la version (%d) del archivo %s con exito!\n",version, argv[3] );
 			exit(EXIT_SUCCESS);
 		}
 	}else {

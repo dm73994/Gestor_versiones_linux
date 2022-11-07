@@ -63,9 +63,14 @@ int copy(char * source, char * destination) {
 
     //Declaración del buffer donde se va a almacenar temporalmente una parte de lo leido
     char buffer[BUFSIZ];
-    while(fread(buffer,sizeof(char), BUFSIZ, sourceFile))
+    //Declaracion de la bandera de lineas leidas
+    size_t nreads;
+    while(!feof(f))
     {
-        fwrite(buffer, sizeof(char), 1, destFile);
+        nreads = fread(buffer,sizeof(char), BUFSIZ,f);
+        if(nreads == 0) break;
+        
+        fwrite(buffer, sizeof(char), nreads, df);
     }
 
 	// cerrar los archivos
