@@ -25,6 +25,7 @@ int copy(char * source, char * destination);
 int addVersion(file_version newVersion);
 void shortHash(char*hash);
 void printVersionStruct(file_version version);
+int checkVersion(char*verifyHash);
 
 
 int copy(char * source, char * destination) {
@@ -86,14 +87,16 @@ return_code add(char * filename, char * comment) {
 	get_file_hash(filename, hash);
 	
 	// TODO VERIFICAR HASH
+	checkVersion(hash);
 	
 	//generar nuevo nombre del archivo
-	char*nuevoNombre = (char*) malloc(strlen( VERSIONS_DIR ) + HASH_SIZE + 1);
+	char*nuevoNombre = (char*) malloc(strlen( VERSIONS_DIR ) +  + HASH_SIZE + 1);
 	strcpy(nuevoNombre, VERSIONS_DIR);
 	strcat(nuevoNombre, "/");
+	strcat(nuevoNombre, filename);
 	strcat(nuevoNombre, hash);
 	
-	if( copy(filename, nuevoNombre) == 1 ){		
+	if( copy(filename, nuevoNombre) == 1 &&  ){		
 		file_version file;
 		strcpy(file.filename, filename);
 		strcpy(file.hash, hash);
@@ -105,6 +108,20 @@ return_code add(char * filename, char * comment) {
 	}
 	
 	return VERSION_ERROR;
+}
+
+//return 1 si la version ya exixst, 3 si ocurrio un error en la carpeta, 0 successfull
+int checkVersion(char*hash){
+	DIR*versionsDir = opendir("./.versions"); // abrir carpeta de versiones
+	struct dirent*ent; //guarda informacion sobre el archivo que se extrae cada momento
+
+	if(versionsDir == NULL) return 3;
+
+	while( (ent = readdir(versionsDir)) != NULL ){
+		printf("FILENAME: %s\n", ent->d_name);
+	}	
+
+	return 0;
 }
 
 //**
@@ -120,7 +137,7 @@ int addVersion(file_version newVersion){
 	//escribir en la bd
 	fwrite(&newVersion, sizeof(file_version), 1, db);
 
-	return fwrite != 0 ? 1 : 0;
+	return fwrite != 0 ? 1 : 0; // 
 }
 
 
@@ -133,6 +150,14 @@ void list(char * filename) {
 
 	// se almacena temporarmente la estructura leida en version
 	file_version versionStruc;
+	
+	//SI EL PARAMETRO ARCHIVO ES NULL LISTAR TODOS LOS BACKUP
+	if(filename == NULL){
+		while( fread(&versionStruc, sizeof(file_version), 1, db) ) printVersionStruct(versionStruc);
+		fclose(db);
+		return;
+	}
+
 	//leer la bd
 	while( fread(&versionStruc, sizeof(file_version), 1, db) ){
 		// SI EL PARAMETRO DE NOMBRE DE ARCHIVO COINCIDE EN UNA ESTRUCTURA DE LA BASE DE DATOS:
@@ -186,22 +211,25 @@ return_code get(char * filename, int version) {
 	//verificar archivo
 	if(db == NULL)	return VERSION_ERROR;
 	
-	file_version versionStruc;
-	fread(&versionStruc, sizeof(file_version), 1, db);
+	file_version versionStruct;
+	//fread(&versionStruct, sizeof(file_version), 1, db);
 	int count = 1;
-	while( fread(&versionStruc, sizeof(file_version), 1, db) ){
-		if( EQUALS(versionStruc.filename, filename)  && count == version){
-			//printf("COUNT: %d\n", count);
-			//printf("VERSION: %d\n", version);
-			//printf("%s\n", versionStruc.hash);
-			char*path = (char*)malloc(strlen(VERSIONS_DIR) + HASH_SIZE + 1)
-			strcpy(path, VERSIONS_DIR);
-			strcpy(path, "/");
-			strcat(path, versionStruc.hash)
-			copy(path, versionStruc.filename);	
-		}
-		else{
-			count++;
+	while( fread(&versionStruct, sizeof(file_version), 1, db) ){
+		if( EQUALS(versionStruct.filename, filename)){			
+			if(count == version){
+				char*path = (char*)malloc(strlen(VERSIONS_DIR) + HASH_SIZE + 2);
+				strcpy(path, VERSIONS_DIR);
+				strcat(path, "/");
+				strcat(path, versionStruct.hash);
+								
+				char*destFile = (char*)malloc(strlen(versionStruct.filename) + 2);
+				strcpy(destFile, "./");
+				strcat(destFile, versionStruct.filename);
+
+				copy(path, destFile);
+				break;
+			}else count++;			
+
 		}
 	}
 	

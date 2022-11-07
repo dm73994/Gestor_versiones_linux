@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Sistema de Control de Versiones: Referencia de la Estructura file_version</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Sistema de Control de Versiones
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">VCS - Sistema de control de Versiones</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Buscar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Atributos públicos</a> &#124;
+<a href="structfile__version-members.html">Lista de todos los miembros</a>  </div>
+  <div class="headertitle">
+<div class="title">Referencia de la Estructura file_version</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Version de un archivo. Para cada version de un archivo se almacena el nombre original, el comentario del usuario y el hash de su contenido. El hash es a la vez el nombre del archivo dentro del repositorio.  
+ <a href="structfile__version.html#details">Más...</a></p>
+
+<p><code>#include &lt;<a class="el" href="versions_8h_source.html">versions.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Atributos públicos</h2></td></tr>
+<tr class="memitem:aafc6bff6d9fb166295a24508a3f7fea2"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfile__version.html#aafc6bff6d9fb166295a24508a3f7fea2">filename</a> [NAME_MAX]</td></tr>
+<tr class="separator:aafc6bff6d9fb166295a24508a3f7fea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2e1642e2bcf91173eb0328c3ae17cf7"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfile__version.html#aa2e1642e2bcf91173eb0328c3ae17cf7">hash</a> [<a class="el" href="versions_8h.html#ad6074dd11ab3c97c8135c43aab03ae95">HASH_SIZE</a>]</td></tr>
+<tr class="separator:aa2e1642e2bcf91173eb0328c3ae17cf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d8c5f55d4d9fa773d6c53dbec8a386d"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structfile__version.html#a9d8c5f55d4d9fa773d6c53dbec8a386d">comment</a> [<a class="el" href="versions_8h.html#acc5088d870a0ea26098e042f6c394065">COMMENT_SIZE</a>]</td></tr>
+<tr class="separator:a9d8c5f55d4d9fa773d6c53dbec8a386d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock"><p>Version de un archivo. Para cada version de un archivo se almacena el nombre original, el comentario del usuario y el hash de su contenido. El hash es a la vez el nombre del archivo dentro del repositorio. </p>
+</div><h2 class="groupheader">Documentación de los datos miembro</h2>
+<a id="a9d8c5f55d4d9fa773d6c53dbec8a386d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d8c5f55d4d9fa773d6c53dbec8a386d">&#9670;&nbsp;</a></span>comment</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char file_version::comment[<a class="el" href="versions_8h.html#acc5088d870a0ea26098e042f6c394065">COMMENT_SIZE</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Comentario del usuario. </p>
+
+</div>
+</div>
+<a id="aafc6bff6d9fb166295a24508a3f7fea2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aafc6bff6d9fb166295a24508a3f7fea2">&#9670;&nbsp;</a></span>filename</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char file_version::filename[NAME_MAX]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Nombre del archivo original. </p>
+
+</div>
+</div>
+<a id="aa2e1642e2bcf91173eb0328c3ae17cf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2e1642e2bcf91173eb0328c3ae17cf7">&#9670;&nbsp;</a></span>hash</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char file_version::hash[<a class="el" href="versions_8h.html#ad6074dd11ab3c97c8135c43aab03ae95">HASH_SIZE</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Hash del contenido del archivo. </p>
+
+</div>
+</div>
+<hr/>La documentación para esta estructura fue generada a partir del siguiente fichero:<ul>
+<li><a class="el" href="versions_8h_source.html">versions.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Generado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.17
+</small></address>
+</body>
+</html>

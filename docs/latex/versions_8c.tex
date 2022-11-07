@@ -1,0 +1,142 @@
+\hypertarget{versions_8c}{}\doxysection{Referencia del Archivo versions.\+c}
+\label{versions_8c}\index{versions.c@{versions.c}}
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+{\ttfamily \#include $<$sys/stat.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}versions.\+h\char`\"{}}\newline
+Dependencia gráfica adjunta para versions.\+c\+:
+% FIG 0
+\doxysubsection*{Funciones}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \mbox{\hyperlink{versions_8c_a29a60e98b354683c436a8d90773d4a24}{get\+\_\+file\+\_\+hash}} (char $\ast$filename, char $\ast$hash)
+\begin{DoxyCompactList}\small\item\em Obtiene el hash de un archivo. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{versions_8c_a5f061b3b6393b99de5f28ad1ad7762a3}{copy}} (char $\ast$source, char $\ast$destination)
+\begin{DoxyCompactList}\small\item\em Copia un archivo. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{versions_8c_ada373273d1720a4bb54d09deb3ff50ed}{add\+Version}} (\mbox{\hyperlink{structfile__version}{file\+\_\+version}} new\+Version)
+\item 
+void \mbox{\hyperlink{versions_8c_a0365df284adb0a75c58871c574c4c3fc}{short\+Hash}} (char $\ast$hash)
+\item 
+void \mbox{\hyperlink{versions_8c_a90cc4f508b7c93514ebfa68813d0a114}{print\+Version\+Struct}} (\mbox{\hyperlink{structfile__version}{file\+\_\+version}} version)
+\item 
+\mbox{\hyperlink{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fe}{return\+\_\+code}} \mbox{\hyperlink{versions_8c_ad4fe92ebc2a2ffbf17636f30a5499951}{add}} (char $\ast$filename, char $\ast$comment)
+\begin{DoxyCompactList}\small\item\em Adiciona un archivo al repositorio. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{versions_8c_aaf76b8ab07b7b563a4984e30dc805f5e}{list}} (char $\ast$filename)
+\begin{DoxyCompactList}\small\item\em Lista las versiones de un archivo. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fe}{return\+\_\+code}} \mbox{\hyperlink{versions_8c_ab7739b28396bbf9a9b488de381bbc6d6}{get}} (char $\ast$filename, int version)
+\begin{DoxyCompactList}\small\item\em Obtiene una version del un archivo. Sobreescribe la version existente. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentación de las funciones}
+\mbox{\Hypertarget{versions_8c_ad4fe92ebc2a2ffbf17636f30a5499951}\label{versions_8c_ad4fe92ebc2a2ffbf17636f30a5499951}} 
+\index{versions.c@{versions.c}!add@{add}}
+\index{add@{add}!versions.c@{versions.c}}
+\doxysubsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fe}{return\+\_\+code}} add (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename,  }\item[{char $\ast$}]{comment }\end{DoxyParamCaption})}
+
+
+
+Adiciona un archivo al repositorio. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em filename} & Nombre del archivo a adicionar \\
+\hline
+{\em comment} & Comentario de la version actual\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Codigo de la operacion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{versions_8c_ada373273d1720a4bb54d09deb3ff50ed}\label{versions_8c_ada373273d1720a4bb54d09deb3ff50ed}} 
+\index{versions.c@{versions.c}!addVersion@{addVersion}}
+\index{addVersion@{addVersion}!versions.c@{versions.c}}
+\doxysubsubsection{\texorpdfstring{addVersion()}{addVersion()}}
+{\footnotesize\ttfamily int add\+Version (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfile__version}{file\+\_\+version}}}]{new\+Version }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{versions_8c_a5f061b3b6393b99de5f28ad1ad7762a3}\label{versions_8c_a5f061b3b6393b99de5f28ad1ad7762a3}} 
+\index{versions.c@{versions.c}!copy@{copy}}
+\index{copy@{copy}!versions.c@{versions.c}}
+\doxysubsubsection{\texorpdfstring{copy()}{copy()}}
+{\footnotesize\ttfamily int copy (\begin{DoxyParamCaption}\item[{char $\ast$}]{source,  }\item[{char $\ast$}]{destination }\end{DoxyParamCaption})}
+
+
+
+Copia un archivo. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em source} & Archivo fuente \\
+\hline
+{\em destination} & Destino\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+1 en caso de exito, 0 si existe error. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{versions_8c_ab7739b28396bbf9a9b488de381bbc6d6}\label{versions_8c_ab7739b28396bbf9a9b488de381bbc6d6}} 
+\index{versions.c@{versions.c}!get@{get}}
+\index{get@{get}!versions.c@{versions.c}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fe}{return\+\_\+code}} get (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename,  }\item[{int}]{version }\end{DoxyParamCaption})}
+
+
+
+Obtiene una version del un archivo. Sobreescribe la version existente. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em filename} & Nombre de archivo. \\
+\hline
+{\em version} & Numero secuencial de la version.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Codigo de la operacion (V\+E\+R\+S\+I\+O\+N\+\_\+\+E\+R\+R\+OR,V\+E\+R\+S\+I\+O\+N\+\_\+\+D\+O\+E\+S\+\_\+\+N\+O\+T\+\_\+\+E\+X\+I\+ST, V\+E\+R\+S\+I\+O\+\_\+\+R\+E\+T\+R\+I\+E\+V\+ED) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{versions_8c_a29a60e98b354683c436a8d90773d4a24}\label{versions_8c_a29a60e98b354683c436a8d90773d4a24}} 
+\index{versions.c@{versions.c}!get\_file\_hash@{get\_file\_hash}}
+\index{get\_file\_hash@{get\_file\_hash}!versions.c@{versions.c}}
+\doxysubsubsection{\texorpdfstring{get\_file\_hash()}{get\_file\_hash()}}
+{\footnotesize\ttfamily char $\ast$ get\+\_\+file\+\_\+hash (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename,  }\item[{char $\ast$}]{hash }\end{DoxyParamCaption})}
+
+
+
+Obtiene el hash de un archivo. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em filename} & Nombre del archivo a obtener el hash \\
+\hline
+{\em hash} & Buffer para almacenar el hash (H\+A\+S\+H\+\_\+\+S\+I\+ZE) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Referencia al buffer, N\+U\+LL si ocurre error 
+\end{DoxyReturn}
+\mbox{\Hypertarget{versions_8c_aaf76b8ab07b7b563a4984e30dc805f5e}\label{versions_8c_aaf76b8ab07b7b563a4984e30dc805f5e}} 
+\index{versions.c@{versions.c}!list@{list}}
+\index{list@{list}!versions.c@{versions.c}}
+\doxysubsubsection{\texorpdfstring{list()}{list()}}
+{\footnotesize\ttfamily void list (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename }\end{DoxyParamCaption})}
+
+
+
+Lista las versiones de un archivo. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em filename} & Nombre del archivo, N\+U\+LL para listar todo el repositorio. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{versions_8c_a90cc4f508b7c93514ebfa68813d0a114}\label{versions_8c_a90cc4f508b7c93514ebfa68813d0a114}} 
+\index{versions.c@{versions.c}!printVersionStruct@{printVersionStruct}}
+\index{printVersionStruct@{printVersionStruct}!versions.c@{versions.c}}
+\doxysubsubsection{\texorpdfstring{printVersionStruct()}{printVersionStruct()}}
+{\footnotesize\ttfamily void print\+Version\+Struct (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structfile__version}{file\+\_\+version}}}]{version }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{versions_8c_a0365df284adb0a75c58871c574c4c3fc}\label{versions_8c_a0365df284adb0a75c58871c574c4c3fc}} 
+\index{versions.c@{versions.c}!shortHash@{shortHash}}
+\index{shortHash@{shortHash}!versions.c@{versions.c}}
+\doxysubsubsection{\texorpdfstring{shortHash()}{shortHash()}}
+{\footnotesize\ttfamily void short\+Hash (\begin{DoxyParamCaption}\item[{char $\ast$}]{hash }\end{DoxyParamCaption})}
+
