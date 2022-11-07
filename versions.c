@@ -25,7 +25,7 @@ int copy(char * source, char * destination);
 int addVersion(file_version newVersion);
 void shortHash(char*hash);
 void printVersionStruct(file_version version);
-int checkVersion(char*verifyHash);
+return_code checkVersion(char*verifyHash, char*filename);
 
 
 int copy(char * source, char * destination) {
@@ -84,44 +84,55 @@ return_code add(char * filename, char * comment) {
 	
 	//hash del archivo
 	char*hash = (char*) malloc(HASH_SIZE);
-	get_file_hash(filename, hash);
+	get_file_hash(filename, hash);		
 	
-	// TODO VERIFICAR HASH
-	checkVersion(hash);
 	
 	//generar nuevo nombre del archivo
 	char*nuevoNombre = (char*) malloc(strlen( VERSIONS_DIR ) +  + HASH_SIZE + 1);
 	strcpy(nuevoNombre, VERSIONS_DIR);
 	strcat(nuevoNombre, "/");
-	strcat(nuevoNombre, filename);
 	strcat(nuevoNombre, hash);
 	
-	if( copy(filename, nuevoNombre) == 1 ){		
-		file_version file;
-		strcpy(file.filename, filename);
-		strcpy(file.hash, hash);
-		strcpy(file.comment, comment);
-		
-		if( addVersion(file) == 1){
-			return VERSION_ADDED;
+	return_code verify = checkVersion(hash, filename);
+
+	file_version file;
+	strcpy(file.filename, filename);
+	strcpy(file.hash, hash);
+	strcpy(file.comment, comment);
+
+	if( verify == HASH_NAME_DOESNT_EXIST){
+		if( copy(filename, nuevoNombre) == 1 ){		
+			if( addVersion(file) == 1) return VERSION_ADDED;
 		}
+	}
+	else if(verify == NAME_DOESNT_EXIST){		
+		if( addVersion(file) == 1) return VERSION_ADDED;
 	}
 	
 	return VERSION_ERROR;
 }
 
 //return 1 si la version ya exixst, 3 si ocurrio un error en la carpeta, 0 successfull
-int checkVersion(char*hash){
-	DIR*versionsDir = opendir("./.versions"); // abrir carpeta de versiones
-	struct dirent*ent; //guarda informacion sobre el archivo que se extrae cada momento
+//
+return_code checkVersion(char*hash, char*filename){
+	FILE*db = fopen(VERSIONS_DB_PATH, "r");
 
-	if(versionsDir == NULL) return 3;
+	if(db == NULL) return 3;
+	
+	file_version vStruct;
+	int nameFlag = 0;
+	int hashFlag = 0;
+	while( fread(&vStruct, sizeof(file_version), 1, db) ){
+		if( EQUALS(vStruct.filename, filename)) nameFlag = 1;
 
-	while( (ent = readdir(versionsDir)) != NULL ){
-		printf("FILENAME: %s\n", ent->d_name);
-	}	
+		if( EQUALS(vStruct.hash, hash) ) hashFlag = 1;
 
-	return 0;
+		if(hashFlag == 1 && nameFlag == 1) return HASH_NAME_ALREADY_EXIST;
+	}
+
+	if(hashFlag == 0 && nameFlag == 0) return HASH_NAME_DOESNT_EXIST;
+
+	return NAME_DOESNT_EXIST;
 }
 
 //**
