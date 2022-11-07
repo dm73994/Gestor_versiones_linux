@@ -96,7 +96,7 @@ return_code add(char * filename, char * comment) {
 	strcat(nuevoNombre, filename);
 	strcat(nuevoNombre, hash);
 	
-	if( copy(filename, nuevoNombre) == 1 &&  ){		
+	if( copy(filename, nuevoNombre) == 1 ){		
 		file_version file;
 		strcpy(file.filename, filename);
 		strcpy(file.hash, hash);
@@ -159,19 +159,23 @@ void list(char * filename) {
 	}
 
 	//leer la bd
+	int counter = 1;
 	while( fread(&versionStruc, sizeof(file_version), 1, db) ){
 		// SI EL PARAMETRO DE NOMBRE DE ARCHIVO COINCIDE EN UNA ESTRUCTURA DE LA BASE DE DATOS:
-		if(EQUALS(versionStruc.filename, filename)) printVersionStruct(versionStruc);
+		if(EQUALS(versionStruc.filename, filename)) {
+			printf("VERSION %d\n", counter);
+			printVersionStruct(versionStruc);
+			counter++;
+		}
 	}
 	fclose(db);
 }
 
 void printVersionStruct(file_version version){	
-	printf("VERSIONES DE %s\n", version.filename);
 	printf("FILENAME: [ %s ] \n", version.filename);
 	printf("HASH: [ %s ]\n", version.hash);
 	printf("COMMENTS: [ %s ] \n", version.comment);
-	printf("\n");
+	printf("****************************************\n");
 }
 
 
@@ -229,7 +233,6 @@ return_code get(char * filename, int version) {
 				copy(path, destFile);
 				break;
 			}else count++;			
-
 		}
 	}
 	
