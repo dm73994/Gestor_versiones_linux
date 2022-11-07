@@ -65,7 +65,7 @@ int copy(char * source, char * destination) {
     char buffer[BUFSIZ];
     while(fread(buffer,sizeof(char), BUFSIZ, sourceFile))
     {
-        fwrite(buffer, sizeof(char), nreads, destFile);
+        fwrite(buffer, sizeof(char), 1, destFile);
     }
 
 	// cerrar los archivos

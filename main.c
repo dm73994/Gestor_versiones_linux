@@ -51,21 +51,21 @@ int main(int argc, char *argv[]) {
 			fprintf(stderr, "Numero de version invalido\n");
 			exit(EXIT_FAILURE);
 		}
-		return_code get = get(argv[3], version);
-		if ( get == OPEN_FILE_ERROR ) {
-			fprintf(stderr, "[ERROR] Error al ingresar al abrir la base de datos, asegurese de que esta exista.", version, argv[3]);
+		return_code getCode = get(argv[3], version);
+		if ( getCode == OPEN_FILE_ERROR ) {
+			fprintf(stderr, "[ERROR] Error al ingresar al abrir la base de datos, asegurese de que esta exista.");
 			exit(EXIT_FAILURE);
 		}
-		else if( get == FILENAME_DOESNT_EXIST){
+		else if( getCode == FILENAME_DOESNT_EXIST){
 			fprintf(stderr, "[ERROR] El nombre de archivo (%s) que desea recuperar no existe.", argv[4]);
 			exit(EXIT_FAILURE);
 		}
-		else if( get == FILE_VERSION_DOESNT_EXIST){
+		else if( getCode == FILE_VERSION_DOESNT_EXIST){
 			fprintf(stderr, "[ERROR] No se puede obtener la version %d de %s, asegurese de ingresar una version correcta.\n", version, argv[3]);
 			exit(EXIT_FAILURE);
 		}
-		else if( get == VERSION_RECOVERY){
-			printf("[SUCCESS] Se ha recuperado la version (%d) del archivo %s con exito!", argv[3], argv[4] );
+		else if( getCode == VERSION_RECOVERY){
+			printf("[SUCCESS] Se ha recuperado la version (%d) del archivo %s con exito!",version, argv[3] );
 			exit(EXIT_SUCCESS);
 		}
 	}else {
