@@ -191,10 +191,14 @@ return_code get(char * filename, int version) {
 	int count = 1;
 	while( fread(&versionStruc, sizeof(file_version), 1, db) ){
 		if( EQUALS(versionStruc.filename, filename)  && count == version){
-			printf("COUNT: %d\n", count);
-			printf("VERSION: %d\n", version);
-			printf("%s\n", versionStruc.hash);
-			copy(versionStruc.hash, versionStruc.filename);	
+			//printf("COUNT: %d\n", count);
+			//printf("VERSION: %d\n", version);
+			//printf("%s\n", versionStruc.hash);
+			char*path = (char*)malloc(strlen(VERSIONS_DIR) + HASH_SIZE + 1)
+			strcpy(path, VERSIONS_DIR);
+			strcpy(path, "/");
+			strcat(path, versionStruc.hash)
+			copy(path, versionStruc.filename);	
 		}
 		else{
 			count++;
