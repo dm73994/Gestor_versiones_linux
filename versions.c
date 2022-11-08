@@ -65,12 +65,12 @@ int copy(char * source, char * destination) {
     char buffer[BUFSIZ];
     //Declaracion de la bandera de lineas leidas
     size_t nreads;
-    while(!feof(f))
+    while(!feof(sourceFile))
     {
-        nreads = fread(buffer,sizeof(char), BUFSIZ,f);
+        nreads = fread(buffer,sizeof(char), BUFSIZ, sourceFile);
         if(nreads == 0) break;
         
-        fwrite(buffer, sizeof(char), nreads, df);
+        fwrite(buffer, sizeof(char), nreads, destFile);
     }
 
 	// cerrar los archivos

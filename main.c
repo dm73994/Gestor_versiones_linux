@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
 			exit(EXIT_FAILURE);
 		}
 		else if( getCode == FILENAME_DOESNT_EXIST){
-			fprintf(stderr, "[ERROR] El nombre de archivo (%s) que desea recuperar no existe.\n", argv[4]);
+			fprintf(stderr, "[ERROR] El nombre de archivo (%s) que desea recuperar no existe.\n", argv[3]);
 			exit(EXIT_FAILURE);
 		}
 		else if( getCode == FILE_VERSION_DOESNT_EXIST){
