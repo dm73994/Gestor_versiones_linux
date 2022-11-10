@@ -67,12 +67,13 @@ $(function() {
 <div class="title">Sistema de Control de Versiones Documentación</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Elaborado por: Erwin Meza Vega <a href="#" onclick="location.href='mai'+'lto:'+'eme'+'za'+'v@u'+'ni'+'cau'+'ca'+'.ed'+'u.'+'co'; return false;">emeza<span style="display: none;">.nosp@m.</span>v@un<span style="display: none;">.nosp@m.</span>icauc<span style="display: none;">.nosp@m.</span>a.ed<span style="display: none;">.nosp@m.</span>u.co</a></p>
+<div class="textblock"><p>Elaborado por: Carlos David Mesa Martinez <a href="#" onclick="location.href='mai'+'lto:'+'cad'+'me'+'sa@'+'un'+'ica'+'uc'+'a.e'+'du'+'.co'; return false;">cadme<span style="display: none;">.nosp@m.</span>sa@u<span style="display: none;">.nosp@m.</span>nicau<span style="display: none;">.nosp@m.</span>ca.e<span style="display: none;">.nosp@m.</span>du.co</a> Anderson Camilo Bonilla Belalcazar <a href="#" onclick="location.href='mai'+'lto:'+'acb'+'on'+'ill'+'a@'+'uni'+'ca'+'uca'+'.e'+'du.'+'co'; return false;">acbon<span style="display: none;">.nosp@m.</span>illa<span style="display: none;">.nosp@m.</span>@unic<span style="display: none;">.nosp@m.</span>auca<span style="display: none;">.nosp@m.</span>.edu.<span style="display: none;">.nosp@m.</span>co</a></p>
 <p>Los Sistemas de Control de Versiones (VCS) permiten guardar el rastro de las modificaciones sobre determinados elementos. En el contexto de este examen, se gestionarán versiones de archivos y directorios.</p>
 <p>Se deberá implementar un sistema de control de versiones simple, que permita:</p>
 <p>Adicionar un archivo al repositorio de versiones. Listar las versiones de un archivo en el repositorio de versiones. Obtener la versión de un archivo del repositorio de versiones.</p>
-<p>En esta implementación sólo se deberá realizar el control de versiones por directorio, en el cual sólo se pueden agregar archivos que se encuentren en el directorio actual.</p>
-<p>Uso: versions add ARCHIVO "Comentario" : Adiciona una version del archivo al repositorio versions list ARCHIVO : Lista las versiones del archivo existentes versions get numver ARCHIVO : Obtiene una version del archivo del repositorio </p>
+<p>En esta implementación sólo se deberá realizar el control de versiones por directorio, en el cual sólo se pueden agregar archivos que se encuentren en el directorio actual (no recursivo).</p>
+<p>Uso: versions add ARCHIVO "Comentario" : Adiciona una version del archivo al repositorio versions list ARCHIVO : Lista las versiones del archivo existentes versions list : Lista todos los archivos en la base de datos (unsort) versions get numver ARCHIVO : Obtiene una version del archivo del repositorio versions version ARCHIVO : Obtiene la version del archivo que se esta trabajando</p>
+<p>Ejemplo de uso: comandos: touch test.txt vim test.txt (agregar contenido al archivo test.txt) ls (verificar que el archivo se ha guardado en la carpeta actual) ./versions add test.txt "version numero uno de pruebas" ./versions list test.txt rm -r test.txt ./versions get 1 test.txt ls (ver si se recupero el archivo) cat test.txt (verificar el contenido recuperado de la version 1 del archivo test.txt) </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
