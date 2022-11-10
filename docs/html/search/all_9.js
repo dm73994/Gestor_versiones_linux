@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['print_5fhelp_20',['print_help',['../main_8c.html#a853216ac51aa181669ff4d3de74058a7',1,'main.c']]],
-  ['printversionstruct_21',['printVersionStruct',['../versions_8c.html#a90cc4f508b7c93514ebfa68813d0a114',1,'versions.c']]]
+  ['open_5ffile_5ferror_26',['OPEN_FILE_ERROR',['../versions_8h.html#aa723f8974b9ec5ee9048ff1618f3d4fea6ccf3c08f696be49d10d0283684e0179',1,'versions.h']]]
 ];

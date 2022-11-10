@@ -51,7 +51,9 @@ typedef enum {
 	HASH_DOESNT_EXIST,
 	FILENAME_DOESNT_EXIST,
 	FILE_VERSION_DOESNT_EXIST,
-	OPEN_FILE_ERROR
+	OPEN_FILE_ERROR,
+	VERSION_FOUND,
+	VERSION_NOT_FOUND
 }return_code;
 
 
@@ -82,5 +84,8 @@ void list(char * filename);
  * @return Codigo de la operacion (VERSION_ERROR,VERSION_DOES_NOT_EXIST, VERSIO_RETRIEVED)
  */
 return_code get(char * filename, int version);
+
+
+void version(char * filename);
 
 #endif

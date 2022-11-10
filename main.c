@@ -68,7 +68,11 @@ int main(int argc, char *argv[]) {
 			printf("[SUCCESS] Se ha recuperado la version (%d) del archivo %s con exito!\n",version, argv[3] );
 			exit(EXIT_SUCCESS);
 		}
-	}else {
+	}
+	else if(argc == 3 && EQUALS(argv[1], "version") ){
+		version(argv[2]);
+	}
+	else {
 		print_help();
 	}
 

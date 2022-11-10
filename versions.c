@@ -261,3 +261,28 @@ return_code get(char * filename, int version) {
 	
 	return FILE_VERSION_DOESNT_EXIST;
 }
+
+void version(char*filename){
+	char*hash = (char*)malloc(HASH_SIZE);
+	get_file_hash(filename, hash);
+
+	FILE*db = fopen(VERSIONS_DB_PATH, "r");
+
+	if(db == NULL){
+		perror("Abrir base de datos");
+		exit(1);
+	}
+
+//	leer la base de datos
+	file_version version;
+	int counter = 1;
+	while(fread(&version, sizeof(file_version), 1, db)){
+		if( EQUALS(version.hash,hash) ){
+			printf("[FILENAME] %s\t[VERSION] %d\n", filename, counter);
+			exit(0);
+		}
+		counter++;
+	}	
+	printf("Asegurese de agregar esta version del archivo %s a la base de datos..\n", filename);
+	exit(0);
+}

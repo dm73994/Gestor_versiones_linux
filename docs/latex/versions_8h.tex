@@ -11,9 +11,21 @@
 {\ttfamily \#include $<$unistd.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}sha256.\+h\char`\"{}}\newline
 Dependencia gráfica adjunta para versions.\+h\+:
-% FIG 0
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{versions_8h__incl}
+\end{center}
+\end{figure}
 Gráfico de los archivos que directa o indirectamente incluyen a este archivo\+:
-% FIG 1
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{versions_8h__dep__incl}
+\end{center}
+\end{figure}
 \doxysubsection*{Clases}
 \begin{DoxyCompactItemize}
 \item 
@@ -45,7 +57,17 @@ enum \mbox{\hyperlink{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fe}{return\+\_\
 \newline
 \mbox{\hyperlink{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fea35edff04c500938fe7935778807babf0}{V\+E\+R\+S\+I\+O\+N\+\_\+\+D\+O\+E\+S\+\_\+\+N\+O\+T\+\_\+\+E\+X\+I\+ST}}, 
 \mbox{\hyperlink{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fea963e13f14d97f83e4d01c02caf710a70}{V\+E\+R\+S\+I\+O\+N\+\_\+\+R\+E\+T\+R\+I\+E\+V\+ED}}, 
-\mbox{\hyperlink{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fea25deb710056678bb5132118d79c8c1d3}{V\+E\+R\+S\+I\+O\+N\+\_\+\+R\+E\+C\+O\+V\+E\+RY}}
+\mbox{\hyperlink{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fea25deb710056678bb5132118d79c8c1d3}{V\+E\+R\+S\+I\+O\+N\+\_\+\+R\+E\+C\+O\+V\+E\+RY}}, 
+\mbox{\hyperlink{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fea69b79f7719186f00397cb582c90079c2}{H\+A\+S\+H\+\_\+\+N\+A\+M\+E\+\_\+\+A\+L\+R\+E\+A\+D\+Y\+\_\+\+E\+X\+I\+ST}}, 
+\newline
+\mbox{\hyperlink{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4feaff54115f8f658525cffd2d7d1bb761c4}{H\+A\+S\+H\+\_\+\+E\+X\+I\+ST}}, 
+\mbox{\hyperlink{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4feac70025954a9e289ead495c5210914935}{H\+A\+S\+H\+\_\+\+D\+O\+E\+S\+N\+T\+\_\+\+E\+X\+I\+ST}}, 
+\mbox{\hyperlink{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fea33a2291bf5c42299e3f3a38b31d01abd}{F\+I\+L\+E\+N\+A\+M\+E\+\_\+\+D\+O\+E\+S\+N\+T\+\_\+\+E\+X\+I\+ST}}, 
+\mbox{\hyperlink{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fea47005db27f56b6a2366f8092f0c5b53b}{F\+I\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N\+\_\+\+D\+O\+E\+S\+N\+T\+\_\+\+E\+X\+I\+ST}}, 
+\newline
+\mbox{\hyperlink{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fea6ccf3c08f696be49d10d0283684e0179}{O\+P\+E\+N\+\_\+\+F\+I\+L\+E\+\_\+\+E\+R\+R\+OR}}, 
+\mbox{\hyperlink{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4feaf6b9b3d6998208ccf873434b3dd77823}{V\+E\+R\+S\+I\+O\+N\+\_\+\+F\+O\+U\+ND}}, 
+\mbox{\hyperlink{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fea47dc6c91cc5a84a3f767400dcd8201d7}{V\+E\+R\+S\+I\+O\+N\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND}}
  \}
 \end{DoxyCompactItemize}
 \doxysubsection*{Funciones}
@@ -55,8 +77,10 @@ enum \mbox{\hyperlink{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fe}{return\+\_\
 \begin{DoxyCompactList}\small\item\em Adiciona un archivo al repositorio. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{versions_8h_aaf76b8ab07b7b563a4984e30dc805f5e}{list}} (char $\ast$filename)
 \begin{DoxyCompactList}\small\item\em Lista las versiones de un archivo. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fe}{return\+\_\+code}} \mbox{\hyperlink{versions_8h_ab7739b28396bbf9a9b488de381bbc6d6}{get}} (char $\ast$filename, int version)
-\begin{DoxyCompactList}\small\item\em Obtiene una version del un archivo. Sobreescribe la version existente. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\mbox{\hyperlink{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fe}{return\+\_\+code}} \mbox{\hyperlink{versions_8h_ab7739b28396bbf9a9b488de381bbc6d6}{get}} (char $\ast$filename, int \mbox{\hyperlink{versions_8h_a5d9eaea1fd31d231f5d11f8205c5080b}{version}})
+\begin{DoxyCompactList}\small\item\em Obtiene una version del un archivo. Sobreescribe la version existente. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{versions_8h_a5d9eaea1fd31d231f5d11f8205c5080b}{version}} (char $\ast$filename)
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Documentación de los \textquotesingle{}defines\textquotesingle{}}
@@ -134,6 +158,38 @@ V\+E\+R\+S\+I\+O\+N\+\_\+\+R\+E\+T\+R\+I\+E\+V\+ED&\\
 V\+E\+R\+S\+I\+O\+N\+\_\+\+R\+E\+C\+O\+V\+E\+RY&\\
 \hline
 
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HASH\_NAME\_ALREADY\_EXIST@{HASH\_NAME\_ALREADY\_EXIST}!versions.h@{versions.h}}\index{versions.h@{versions.h}!HASH\_NAME\_ALREADY\_EXIST@{HASH\_NAME\_ALREADY\_EXIST}}}\mbox{\Hypertarget{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fea69b79f7719186f00397cb582c90079c2}\label{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fea69b79f7719186f00397cb582c90079c2}} 
+H\+A\+S\+H\+\_\+\+N\+A\+M\+E\+\_\+\+A\+L\+R\+E\+A\+D\+Y\+\_\+\+E\+X\+I\+ST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HASH\_EXIST@{HASH\_EXIST}!versions.h@{versions.h}}\index{versions.h@{versions.h}!HASH\_EXIST@{HASH\_EXIST}}}\mbox{\Hypertarget{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4feaff54115f8f658525cffd2d7d1bb761c4}\label{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4feaff54115f8f658525cffd2d7d1bb761c4}} 
+H\+A\+S\+H\+\_\+\+E\+X\+I\+ST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HASH\_DOESNT\_EXIST@{HASH\_DOESNT\_EXIST}!versions.h@{versions.h}}\index{versions.h@{versions.h}!HASH\_DOESNT\_EXIST@{HASH\_DOESNT\_EXIST}}}\mbox{\Hypertarget{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4feac70025954a9e289ead495c5210914935}\label{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4feac70025954a9e289ead495c5210914935}} 
+H\+A\+S\+H\+\_\+\+D\+O\+E\+S\+N\+T\+\_\+\+E\+X\+I\+ST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FILENAME\_DOESNT\_EXIST@{FILENAME\_DOESNT\_EXIST}!versions.h@{versions.h}}\index{versions.h@{versions.h}!FILENAME\_DOESNT\_EXIST@{FILENAME\_DOESNT\_EXIST}}}\mbox{\Hypertarget{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fea33a2291bf5c42299e3f3a38b31d01abd}\label{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fea33a2291bf5c42299e3f3a38b31d01abd}} 
+F\+I\+L\+E\+N\+A\+M\+E\+\_\+\+D\+O\+E\+S\+N\+T\+\_\+\+E\+X\+I\+ST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FILE\_VERSION\_DOESNT\_EXIST@{FILE\_VERSION\_DOESNT\_EXIST}!versions.h@{versions.h}}\index{versions.h@{versions.h}!FILE\_VERSION\_DOESNT\_EXIST@{FILE\_VERSION\_DOESNT\_EXIST}}}\mbox{\Hypertarget{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fea47005db27f56b6a2366f8092f0c5b53b}\label{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fea47005db27f56b6a2366f8092f0c5b53b}} 
+F\+I\+L\+E\+\_\+\+V\+E\+R\+S\+I\+O\+N\+\_\+\+D\+O\+E\+S\+N\+T\+\_\+\+E\+X\+I\+ST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OPEN\_FILE\_ERROR@{OPEN\_FILE\_ERROR}!versions.h@{versions.h}}\index{versions.h@{versions.h}!OPEN\_FILE\_ERROR@{OPEN\_FILE\_ERROR}}}\mbox{\Hypertarget{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fea6ccf3c08f696be49d10d0283684e0179}\label{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fea6ccf3c08f696be49d10d0283684e0179}} 
+O\+P\+E\+N\+\_\+\+F\+I\+L\+E\+\_\+\+E\+R\+R\+OR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VERSION\_FOUND@{VERSION\_FOUND}!versions.h@{versions.h}}\index{versions.h@{versions.h}!VERSION\_FOUND@{VERSION\_FOUND}}}\mbox{\Hypertarget{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4feaf6b9b3d6998208ccf873434b3dd77823}\label{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4feaf6b9b3d6998208ccf873434b3dd77823}} 
+V\+E\+R\+S\+I\+O\+N\+\_\+\+F\+O\+U\+ND&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{VERSION\_NOT\_FOUND@{VERSION\_NOT\_FOUND}!versions.h@{versions.h}}\index{versions.h@{versions.h}!VERSION\_NOT\_FOUND@{VERSION\_NOT\_FOUND}}}\mbox{\Hypertarget{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fea47dc6c91cc5a84a3f767400dcd8201d7}\label{versions_8h_aa723f8974b9ec5ee9048ff1618f3d4fea47dc6c91cc5a84a3f767400dcd8201d7}} 
+V\+E\+R\+S\+I\+O\+N\+\_\+\+N\+O\+T\+\_\+\+F\+O\+U\+ND&\\
+\hline
+
 \end{DoxyEnumFields}
 
 
@@ -193,3 +249,9 @@ Lista las versiones de un archivo.
 {\em filename} & Nombre del archivo, N\+U\+LL para listar todo el repositorio. \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{versions_8h_a5d9eaea1fd31d231f5d11f8205c5080b}\label{versions_8h_a5d9eaea1fd31d231f5d11f8205c5080b}} 
+\index{versions.h@{versions.h}!version@{version}}
+\index{version@{version}!versions.h@{versions.h}}
+\doxysubsubsection{\texorpdfstring{version()}{version()}}
+{\footnotesize\ttfamily void version (\begin{DoxyParamCaption}\item[{char $\ast$}]{filename }\end{DoxyParamCaption})}
+

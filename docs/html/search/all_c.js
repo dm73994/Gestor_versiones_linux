@@ -1,15 +1,14 @@
 var searchData=
 [
-  ['version_5fadded_38',['VERSION_ADDED',['../versions_8h.html#aa723f8974b9ec5ee9048ff1618f3d4fea5c5f93f3d278a45cfebefefc8d5396cf',1,'versions.h']]],
-  ['version_5falready_5fexists_39',['VERSION_ALREADY_EXISTS',['../versions_8h.html#aa723f8974b9ec5ee9048ff1618f3d4fea8365144355870ee1221b1bd7f788d250',1,'versions.h']]],
-  ['version_5fcreated_40',['VERSION_CREATED',['../versions_8h.html#aa723f8974b9ec5ee9048ff1618f3d4fea2a8c108083126a5f34c442a90d855d4e',1,'versions.h']]],
-  ['version_5fdoes_5fnot_5fexist_41',['VERSION_DOES_NOT_EXIST',['../versions_8h.html#aa723f8974b9ec5ee9048ff1618f3d4fea35edff04c500938fe7935778807babf0',1,'versions.h']]],
-  ['version_5ferror_42',['VERSION_ERROR',['../versions_8h.html#aa723f8974b9ec5ee9048ff1618f3d4feaaea842af3c3103cad35f897e3378a4e4',1,'versions.h']]],
-  ['version_5frecovery_43',['VERSION_RECOVERY',['../versions_8h.html#aa723f8974b9ec5ee9048ff1618f3d4fea25deb710056678bb5132118d79c8c1d3',1,'versions.h']]],
-  ['version_5fretrieved_44',['VERSION_RETRIEVED',['../versions_8h.html#aa723f8974b9ec5ee9048ff1618f3d4fea963e13f14d97f83e4d01c02caf710a70',1,'versions.h']]],
-  ['versions_2ec_45',['versions.c',['../versions_8c.html',1,'']]],
-  ['versions_2eh_46',['versions.h',['../versions_8h.html',1,'']]],
-  ['versions_5fdb_47',['VERSIONS_DB',['../versions_8h.html#ad3e0108e7b1acf5199dd266fad6c3c72',1,'versions.h']]],
-  ['versions_5fdb_5fpath_48',['VERSIONS_DB_PATH',['../versions_8h.html#a000025452d9028ff7b14d6987892be27',1,'versions.h']]],
-  ['versions_5fdir_49',['VERSIONS_DIR',['../versions_8h.html#adf174355ba47dc26c433ccbc405d8041',1,'versions.h']]]
+  ['sha256_2ec_33',['sha256.c',['../sha256_8c.html',1,'']]],
+  ['sha256_2eh_34',['sha256.h',['../sha256_8h.html',1,'']]],
+  ['sha256_5fbuff_35',['sha256_buff',['../structsha256__buff.html',1,'']]],
+  ['sha256_5ffinalize_36',['sha256_finalize',['../sha256_8c.html#a8623b10604be77d7d7951e782b43d34b',1,'sha256_finalize(struct sha256_buff *buff):&#160;sha256.c'],['../sha256_8h.html#a8623b10604be77d7d7951e782b43d34b',1,'sha256_finalize(struct sha256_buff *buff):&#160;sha256.c']]],
+  ['sha256_5fhash_37',['sha256_hash',['../sha256_8c.html#ad530fbf14b5712f5b4167a653a3cf95d',1,'sha256_hash(const void *data, size_t size, uint8_t *hash):&#160;sha256.c'],['../sha256_8h.html#ad530fbf14b5712f5b4167a653a3cf95d',1,'sha256_hash(const void *data, size_t size, uint8_t *hash):&#160;sha256.c']]],
+  ['sha256_5fhash_5ffile_5fhex_38',['sha256_hash_file_hex',['../sha256_8c.html#ae8bd543a3f2a5f86eb3bd4bb27989b0d',1,'sha256_hash_file_hex(char *path, char *hex):&#160;sha256.c'],['../sha256_8h.html#ae8bd543a3f2a5f86eb3bd4bb27989b0d',1,'sha256_hash_file_hex(char *path, char *hex):&#160;sha256.c']]],
+  ['sha256_5fhash_5fhex_39',['sha256_hash_hex',['../sha256_8c.html#a7ec00c2218ecd810aca6ea8af9e4f276',1,'sha256_hash_hex(const void *data, size_t size, char *hex):&#160;sha256.c'],['../sha256_8h.html#a7ec00c2218ecd810aca6ea8af9e4f276',1,'sha256_hash_hex(const void *data, size_t size, char *hex):&#160;sha256.c']]],
+  ['sha256_5finit_40',['sha256_init',['../sha256_8c.html#a771fc76603cc1847f09101e91d159df6',1,'sha256_init(struct sha256_buff *buff):&#160;sha256.c'],['../sha256_8h.html#a771fc76603cc1847f09101e91d159df6',1,'sha256_init(struct sha256_buff *buff):&#160;sha256.c']]],
+  ['sha256_5fread_41',['sha256_read',['../sha256_8c.html#aad7f9d2cde11fb8605fef1460f30e83d',1,'sha256_read(const struct sha256_buff *buff, uint8_t *hash):&#160;sha256.c'],['../sha256_8h.html#aad7f9d2cde11fb8605fef1460f30e83d',1,'sha256_read(const struct sha256_buff *buff, uint8_t *hash):&#160;sha256.c']]],
+  ['sha256_5fread_5fhex_42',['sha256_read_hex',['../sha256_8c.html#a9fb2964dda29fba79379be867f03ea85',1,'sha256_read_hex(const struct sha256_buff *buff, char *hex):&#160;sha256.c'],['../sha256_8h.html#a9fb2964dda29fba79379be867f03ea85',1,'sha256_read_hex(const struct sha256_buff *buff, char *hex):&#160;sha256.c']]],
+  ['sha256_5fupdate_43',['sha256_update',['../sha256_8c.html#ae15af6ff9b047c172b7f650ee5e10804',1,'sha256_update(struct sha256_buff *buff, const void *data, size_t size):&#160;sha256.c'],['../sha256_8h.html#ae15af6ff9b047c172b7f650ee5e10804',1,'sha256_update(struct sha256_buff *buff, const void *data, size_t size):&#160;sha256.c']]]
 ];

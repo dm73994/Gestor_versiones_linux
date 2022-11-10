@@ -76,7 +76,22 @@ $(function() {
 Dependencia gráfica adjunta para versions.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="versions_8c__incl.png" border="0" usemap="#versions_8c" alt=""/></div>
-<!-- MAP 0 -->
+<map name="versions_8c" id="versions_8c">
+<area shape="rect" title=" " alt="" coords="99,5,187,32"/>
+<area shape="rect" title=" " alt="" coords="5,155,76,181"/>
+<area shape="rect" title=" " alt="" coords="101,155,186,181"/>
+<area shape="rect" href="versions_8h.html" title=" " alt="" coords="420,80,509,107"/>
+<area shape="rect" title=" " alt="" coords="429,155,501,181"/>
+<area shape="rect" title=" " alt="" coords="525,155,588,181"/>
+<area shape="rect" title=" " alt="" coords="613,155,679,181"/>
+<area shape="rect" title=" " alt="" coords="704,155,775,181"/>
+<area shape="rect" title=" " alt="" coords="772,229,843,256"/>
+<area shape="rect" title=" " alt="" coords="210,155,306,181"/>
+<area shape="rect" title=" " alt="" coords="330,155,405,181"/>
+<area shape="rect" href="sha256_8h.html" title=" " alt="" coords="860,155,941,181"/>
+<area shape="rect" title=" " alt="" coords="967,229,1037,256"/>
+<area shape="rect" title=" " alt="" coords="867,229,942,256"/>
+</map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -88,20 +103,25 @@ Funciones</h2></td></tr>
 <tr class="memdesc:a5f061b3b6393b99de5f28ad1ad7762a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copia un archivo.  <a href="versions_8c.html#a5f061b3b6393b99de5f28ad1ad7762a3">Más...</a><br /></td></tr>
 <tr class="separator:a5f061b3b6393b99de5f28ad1ad7762a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada373273d1720a4bb54d09deb3ff50ed"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="versions_8c.html#ada373273d1720a4bb54d09deb3ff50ed">addVersion</a> (<a class="el" href="structfile__version.html">file_version</a> newVersion)</td></tr>
+<tr class="memdesc:ada373273d1720a4bb54d09deb3ff50ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">registra una estructura archivo en la base de datos  <a href="versions_8c.html#ada373273d1720a4bb54d09deb3ff50ed">Más...</a><br /></td></tr>
 <tr class="separator:ada373273d1720a4bb54d09deb3ff50ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0365df284adb0a75c58871c574c4c3fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="versions_8c.html#a0365df284adb0a75c58871c574c4c3fc">shortHash</a> (char *hash)</td></tr>
-<tr class="separator:a0365df284adb0a75c58871c574c4c3fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90cc4f508b7c93514ebfa68813d0a114"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="versions_8c.html#a90cc4f508b7c93514ebfa68813d0a114">printVersionStruct</a> (<a class="el" href="structfile__version.html">file_version</a> version)</td></tr>
+<tr class="memitem:a90cc4f508b7c93514ebfa68813d0a114"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="versions_8c.html#a90cc4f508b7c93514ebfa68813d0a114">printVersionStruct</a> (<a class="el" href="structfile__version.html">file_version</a> <a class="el" href="versions_8h.html#a5d9eaea1fd31d231f5d11f8205c5080b">version</a>)</td></tr>
+<tr class="memdesc:a90cc4f508b7c93514ebfa68813d0a114"><td class="mdescLeft">&#160;</td><td class="mdescRight">imprime en consola la estructura de un archivo  <a href="versions_8c.html#a90cc4f508b7c93514ebfa68813d0a114">Más...</a><br /></td></tr>
 <tr class="separator:a90cc4f508b7c93514ebfa68813d0a114"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4e5bf86db59d8892d9a359ab6fe8c10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="versions_8h.html#aa723f8974b9ec5ee9048ff1618f3d4fe">return_code</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="versions_8c.html#ac4e5bf86db59d8892d9a359ab6fe8c10">checkVersion</a> (char *verifyHash, char *filename)</td></tr>
+<tr class="memdesc:ac4e5bf86db59d8892d9a359ab6fe8c10"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica si un hash y un nombre ya existen o no en la base de datos y en la carpeta de versiones.  <a href="versions_8c.html#ac4e5bf86db59d8892d9a359ab6fe8c10">Más...</a><br /></td></tr>
+<tr class="separator:ac4e5bf86db59d8892d9a359ab6fe8c10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad4fe92ebc2a2ffbf17636f30a5499951"><td class="memItemLeft" align="right" valign="top"><a class="el" href="versions_8h.html#aa723f8974b9ec5ee9048ff1618f3d4fe">return_code</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="versions_8c.html#ad4fe92ebc2a2ffbf17636f30a5499951">add</a> (char *filename, char *comment)</td></tr>
 <tr class="memdesc:ad4fe92ebc2a2ffbf17636f30a5499951"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adiciona un archivo al repositorio.  <a href="versions_8c.html#ad4fe92ebc2a2ffbf17636f30a5499951">Más...</a><br /></td></tr>
 <tr class="separator:ad4fe92ebc2a2ffbf17636f30a5499951"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaf76b8ab07b7b563a4984e30dc805f5e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="versions_8c.html#aaf76b8ab07b7b563a4984e30dc805f5e">list</a> (char *filename)</td></tr>
 <tr class="memdesc:aaf76b8ab07b7b563a4984e30dc805f5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lista las versiones de un archivo.  <a href="versions_8c.html#aaf76b8ab07b7b563a4984e30dc805f5e">Más...</a><br /></td></tr>
 <tr class="separator:aaf76b8ab07b7b563a4984e30dc805f5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7739b28396bbf9a9b488de381bbc6d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="versions_8h.html#aa723f8974b9ec5ee9048ff1618f3d4fe">return_code</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="versions_8c.html#ab7739b28396bbf9a9b488de381bbc6d6">get</a> (char *filename, int version)</td></tr>
+<tr class="memitem:ab7739b28396bbf9a9b488de381bbc6d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="versions_8h.html#aa723f8974b9ec5ee9048ff1618f3d4fe">return_code</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="versions_8c.html#ab7739b28396bbf9a9b488de381bbc6d6">get</a> (char *filename, int <a class="el" href="versions_8h.html#a5d9eaea1fd31d231f5d11f8205c5080b">version</a>)</td></tr>
 <tr class="memdesc:ab7739b28396bbf9a9b488de381bbc6d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Obtiene una version del un archivo. Sobreescribe la version existente.  <a href="versions_8c.html#ab7739b28396bbf9a9b488de381bbc6d6">Más...</a><br /></td></tr>
 <tr class="separator:ab7739b28396bbf9a9b488de381bbc6d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d9eaea1fd31d231f5d11f8205c5080b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="versions_8c.html#a5d9eaea1fd31d231f5d11f8205c5080b">version</a> (char *filename)</td></tr>
+<tr class="separator:a5d9eaea1fd31d231f5d11f8205c5080b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentación de las funciones</h2>
 <a id="ad4fe92ebc2a2ffbf17636f30a5499951"></a>
@@ -157,6 +177,53 @@ Funciones</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>registra una estructura archivo en la base de datos </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newVersion</td><td>estructura que será almacenada </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>int 1 si se pudo sobreescribir, en cualquier otro caso será un error </dd></dl>
+
+</div>
+</div>
+<a id="ac4e5bf86db59d8892d9a359ab6fe8c10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4e5bf86db59d8892d9a359ab6fe8c10">&#9670;&nbsp;</a></span>checkVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="versions_8h.html#aa723f8974b9ec5ee9048ff1618f3d4fe">return_code</a> checkVersion </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>verifyHash</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>filename</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Verifica si un hash y un nombre ya existen o no en la base de datos y en la carpeta de versiones. </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">verifyHash</td><td>hash a buscar </td></tr>
+    <tr><td class="paramname">filename</td><td>nombre de archivo a buscar </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Devuelve</dt><dd>return_code HASH_NAME_ALREADY_EXIST || HASH_EXIST || HASH_DOESNT_EXIST </dd></dl>
 
 </div>
 </div>
@@ -316,19 +383,27 @@ Funciones</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>imprime en consola la estructura de un archivo </p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">version</td><td>estructura del archivo que queremos mostrar en consola </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<a id="a0365df284adb0a75c58871c574c4c3fc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0365df284adb0a75c58871c574c4c3fc">&#9670;&nbsp;</a></span>shortHash()</h2>
+<a id="a5d9eaea1fd31d231f5d11f8205c5080b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d9eaea1fd31d231f5d11f8205c5080b">&#9670;&nbsp;</a></span>version()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void shortHash </td>
+          <td class="memname">void version </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>hash</em></td><td>)</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
