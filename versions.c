@@ -263,11 +263,14 @@ return_code get(char * filename, int version) {
 }
 
 void version(char*filename){
+	//obtener el hash del archivo actual
 	char*hash = (char*)malloc(HASH_SIZE);
 	get_file_hash(filename, hash);
 
+	//abrir base de datos
 	FILE*db = fopen(VERSIONS_DB_PATH, "r");
 
+	//verificar la base de datos
 	if(db == NULL){
 		perror("Abrir base de datos");
 		exit(1);
@@ -275,7 +278,7 @@ void version(char*filename){
 
 //	leer la base de datos
 	file_version version;
-	int counter = 1;
+	int counter = 1; // version inicial
 	while(fread(&version, sizeof(file_version), 1, db)){
 		if( EQUALS(version.hash,hash) ){
 			printf("[FILENAME] %s\t[VERSION] %d\n", filename, counter);

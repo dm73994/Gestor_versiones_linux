@@ -85,7 +85,11 @@ void list(char * filename);
  */
 return_code get(char * filename, int version);
 
-
+/**
+ *@brief muestra la version del archivo actual
+ *
+ * @param filename Nombre del archivo del cual se desea saber su version
+ */
 void version(char * filename);
 
 #endif
