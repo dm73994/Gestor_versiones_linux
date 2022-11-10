@@ -1,7 +1,7 @@
 /*
  * @file
  * @author Carlos David Mesa Martinez <cadmesa@unicauca.edu.co>
- * @author Anderson Camilo Bonilla <>
+ * @author Anderson Camilo Bonilla <acbonilla@unicauca.edu.co>
  * Sistema de Control de Versiones
  * Uso: 
  *      versions add ARCHIVO "Comentario" : Adiciona una version del archivo al repositorio

@@ -1,7 +1,9 @@
 /**
 @mainpage
 
-Elaborado por: Erwin Meza Vega <emezav@unicauca.edu.co>
+Elaborado por:
+	Carlos David Mesa Martinez <cadmesa@unicauca.edu.co>
+	Anderson Camilo Bonilla Belalcazar <acbonilla@unicauca.edu.co>
 
 Los Sistemas de Control de Versiones (VCS) permiten guardar el rastro
 de las modificaciones sobre determinados elementos. En el contexto de este
@@ -15,11 +17,25 @@ Se deberá implementar un sistema de control de versiones simple, que permita:
 
 En esta implementación sólo se deberá realizar el control de versiones por
 directorio, en el cual sólo se pueden agregar archivos que se encuentren en el
-directorio actual.
+directorio actual (no recursivo).
 
 Uso: 
-     versions add ARCHIVO "Comentario" : Adiciona una version del archivo al repositorio
-     versions list ARCHIVO             : Lista las versiones del archivo existentes
-     versions get numver ARCHIVO       : Obtiene una version del archivo del repositorio
+		versions add ARCHIVO "Comentario" : Adiciona una version del archivo al repositorio
+		versions list ARCHIVO             : Lista las versiones del archivo existentes
+		versions list 			  : Lista todos los archivos en la base de datos (unsort)
+		versions get numver ARCHIVO       : Obtiene una version del archivo del repositorio
+		versions version ARCHIVO          : Obtiene la version del archivo que se esta trabajando
+
+Ejemplo de uso:
+comandos: 
+	touch test.txt
+	vim test.txt (agregar contenido al archivo test.txt)
+	ls (verificar que el archivo se ha guardado en la carpeta actual)
+	./versions add test.txt "version numero uno de pruebas"
+	./versions list test.txt
+	rm -r test.txt
+	./versions get 1 test.txt
+	ls (ver si se recupero el archivo)
+	cat test.txt (verificar el contenido recuperado de la version 1 del archivo test.txt)
 
 */
